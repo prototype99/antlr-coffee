@@ -8,8 +8,10 @@ grammar Coffee;
 SINGLE_COMMENT : '//' .*? '\n' ->skip;
 
 // reserved words
+BREAK : 'break';
 IMPORT : 'import';
 INT : 'int';
+VOID : 'void';
 
 // operators and symbols
 ADD : '+';
