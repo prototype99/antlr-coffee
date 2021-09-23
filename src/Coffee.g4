@@ -15,6 +15,7 @@ VOID : 'void';
 
 // operators and symbols
 ADD : '+';
+LIT : [0-9];
 MUL : '*';
 SQUOTE : '\'';
 SEMI : ';';
@@ -35,8 +36,14 @@ WS : [ \n\t\r\f] -> skip;
   parser
 */
 
-program : global_decl* EOF;
+program : global_decl* expr EOF;
 
 global_decl : var_decl;
 
+literal : LIT;
+
+op : ADD | MUL ;
+
 var_decl : INT ID (COMMA ID)* SEMI;
+
+expr : LROUND expr RROUND | SUB expr | NOT expr | expr op expr | location | literal;
